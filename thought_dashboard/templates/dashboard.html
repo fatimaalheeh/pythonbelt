@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1> Hi {{ first_name }} {{ last_name }} </h1>
+    <a style="float: right;" href="/logout">Logout</a>
+    <br>
+    <hr>
+    <form action="/add_thought" method="post">
+        {% csrf_token %}
+        
+        <textarea name="thought">Post a great thought here</textarea>
+        <br>
+        <input type="submit" value="Add thought">
+    </form>
+    <hr>
+    {% for id, full_thought in  thoughts.items %}
+        <h4> {{ full_thought.thought.user_id.first_name }} {{ full_thought.thought.user_id.last_name }} - {{ full_thought.thought.created_at }}</h4>
+        <p> {{ full_thought.thought.thought }} </p>
+        {% for like in  full_thought.likes %}
+            <h6> {{likes.user_id.first_name}} {{likes.user_id.last_name}} - {{likes.created_at}}</h6>
+            <p>{{likes.likecount}}</p>
+        {% endfor %}
+        <form action="/add_comment/{{id}}" method="post">
+            {% csrf_token %}
+            <textarea name="comment"></textarea>
+            <br>
+            <input type="submit" value="Add a Comment">
+        </form>
+    {% endfor %}
+</body>
+</html>
