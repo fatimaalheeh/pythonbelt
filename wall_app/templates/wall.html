@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <h1>Coding Dojo Wall</h1>
+        <p>Welcome {{name}}</p>
+        <a href="">logoff</a>
+    </section>
+    <form action="">
+        {%csrf_token%}
+        <p>Post a message</p>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <input type="submit" value="Post a message">
+
+    </form>
+    {%for%}
+    <h4>{{message sender}}{{message date}}</h4>
+    <p>{{message content}}</p>
+
+    <form action="">
+        {%csrf_token%}
+        <p>Post a comment</p>
+        <textarea name="" id="" cols="30" rows="10" ></textarea>
+        <input type="submit" value="Post a comment">
+    </form>
+    {%for%}
+        <p>{{comment sender}}{{comment date}}</p>
+            <p>{{comment content}}</p>
+    {%endfor%}
+
+
+    {%endfor%}
+</body>
+</html>
